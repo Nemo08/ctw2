@@ -19,3 +19,4 @@ type Usecase interface {
 	Repository
 	Create(name, email, phone string) (tools.ID, error)
 }
+

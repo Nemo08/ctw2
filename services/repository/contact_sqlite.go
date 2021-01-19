@@ -25,23 +25,6 @@ func NewContactSqliteRepository(db *gorm.DB) *ContactSqliteRepository {
 	}
 }
 
-/*
-type Repository interface {
-	-Get(id entity.ID) (*entity.Contact, error)
-	-Search(query string) ([]*entity.Contact, error)
-	-List() ([]*entity.Contact, error)
-
-	-Create(e *entity.Contact) (entity.ID, error)
-	-Update(e *entity.Contact) error
-	-Delete(id entity.ID) (entity.ID, error)
-}
-
-type Usecase interface {
-	Repository
-	Create(name, email, phone string) (entity.ID, error)
-}
-*/
-
 func (r *ContactSqliteRepository) Get(id tools.ID) (*entity.Contact, error) {
 	c := Contact{ID: id}
 	var ec *entity.Contact
