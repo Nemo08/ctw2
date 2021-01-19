@@ -6,6 +6,7 @@ import (
 	"github.com/Nemo08/ctw2/infrastructure"
 	"github.com/Nemo08/ctw2/services/http"
 	"github.com/Nemo08/ctw2/services/repository"
+	"github.com/Nemo08/ctw2/usecase/contact"
 
 	_ "github.com/davecgh/go-spew/spew"
 )
@@ -39,6 +40,8 @@ func main() {
 		cc, _ := crepo.Search("жП")
 		spew.Dump(cc)
 	*/
+	cont := contact.NewContactUsecase(crepo, logr)
+
 	srv := http.NewHttpService("api/v1/")
 
 	srv.Start(7123)
