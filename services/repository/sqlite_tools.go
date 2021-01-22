@@ -15,6 +15,7 @@ func utflower(s string) string {
 	return strings.ToLower(s)
 }
 
+//MakeSqliteConnection make connection
 func MakeSqliteConnection(URI string, l infrastructure.Logger) (*gorm.DB, error) {
 	sql.Register("sqlite3_custom", &sqlite3.SQLiteDriver{
 		ConnectHook: func(conn *sqlite3.SQLiteConn) error {
