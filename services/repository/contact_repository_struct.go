@@ -44,8 +44,8 @@ func ES2RS(ec []entity.Contact) ([]Contact, error) {
 }
 
 // Копирует массив данных из структуры entity в структуру базы
-func RS2ES(c []Contact) ([]entity.Contact, error) {
-	ec := []entity.Contact{}
+func RS2ES(c []Contact) ([]*entity.Contact, error) {
+	ec := []*entity.Contact{}
 	err := copier.Copy(&ec, &c)
 	return ec, err
 }

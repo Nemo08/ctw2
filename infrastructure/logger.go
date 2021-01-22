@@ -10,23 +10,23 @@ type LogrusLogger struct {
 }
 
 func (l *LogrusLogger) Info(args ...interface{}) {
-	log.Info(args)
+	log.Info(args...)
 }
 
 func (l *LogrusLogger) Error(args ...interface{}) {
-	log.Error(args)
+	log.Error(args...)
 }
 
 func (l *LogrusLogger) Warn(args ...interface{}) {
-	log.Warn(args)
+	log.Warn(args...)
 }
 
 func (l *LogrusLogger) Debug(args ...interface{}) {
-	log.Debug(args)
+	log.Debug(args...)
 }
 
 func (l *LogrusLogger) Print(args ...interface{}) {
-	log.Info(args)
+	log.Info(args...)
 }
 
 func NewLogrusLogger() Logger {

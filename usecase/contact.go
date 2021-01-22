@@ -17,8 +17,12 @@ type Repository interface {
 }
 
 type ContactUsecase interface {
-	Repository
+	Get(id tools.ID) (*entity.Contact, error)
+	Search(query string) ([]*entity.Contact, error)
+	List() ([]*entity.Contact, error)
 	Create(name, email, phone string) (tools.ID, error)
+	Update(e *entity.Contact) error
+	Delete(id tools.ID) (tools.ID, error)
 }
 
 type contactUsecase struct {
@@ -34,33 +38,33 @@ func NewContactUsecase(r Repository, l ifr.Logger) ContactUsecase {
 	}
 }
 
-func (cu *contactUsecase) Get(id tools.ID) (*entity.Contact, error) {
+func (cu contactUsecase) Get(id tools.ID) (*entity.Contact, error) {
 	cu.logger.Info("get contact by id", id)
 	return cu.repo.Get(id)
 }
 
-func (cu *contactUsecase) Search(query string) ([]*entity.Contact, error) {
+func (cu contactUsecase) Search(query string) ([]*entity.Contact, error) {
 	cu.logger.Info("search contact", query)
 	return cu.repo.Search(query)
 }
 
-func (cu *contactUsecase) List() ([]*entity.Contact, error) {
+func (cu contactUsecase) List() ([]*entity.Contact, error) {
 	cu.logger.Info("list contact")
 	return cu.repo.List()
 }
 
-func (cu *contactUsecase) Create(name, email, phone string) (tools.ID, error) {
+func (cu contactUsecase) Create(name, email, phone string) (tools.ID, error) {
 	cu.logger.Info("create contact", name, email, phone)
 	cont := entity.NewContact(name, email, phone)
 	return cu.repo.Create(cont)
 }
 
-func (cu *contactUsecase) Update(e *entity.Contact) error {
+func (cu contactUsecase) Update(e *entity.Contact) error {
 	cu.logger.Info("update contact", e.ID)
 	return cu.repo.Update(e)
 }
 
-func (cu *contactUsecase) Delete(id tools.ID) (tools.ID, error) {
+func (cu contactUsecase) Delete(id tools.ID) (tools.ID, error) {
 	cu.logger.Info("delete contact", id)
 	return cu.repo.Delete(id)
 }

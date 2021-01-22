@@ -40,9 +40,9 @@ func (r *ContactSqliteRepository) Get(id tools.ID) (*entity.Contact, error) {
 	return ec, nil
 }
 
-func (r *ContactSqliteRepository) List() ([]entity.Contact, error) {
+func (r *ContactSqliteRepository) List() ([]*entity.Contact, error) {
 	cs := []Contact{}
-	var ec []entity.Contact
+	var ec []*entity.Contact
 	tx := r.gormdb.Find(&cs)
 	if tx.Error != nil {
 		return ec, tx.Error

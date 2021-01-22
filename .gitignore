@@ -1,3 +1,4 @@
 
 *.exe
 *.db
+cmd/ctw_srv/cover.out
