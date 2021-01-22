@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm"
 )
 
-//Структура контакта в базе
+//Contact Структура контакта в базе
 type Contact struct {
 	ID        tools.ID `gorm:"type:uuid;primary_key;"`
 	CreatedAt time.Time
@@ -22,28 +22,28 @@ type Contact struct {
 	Phone string
 }
 
-// Копирует данные из структуры базы в структуру entity
+// E2R Копирует данные из структуры базы в структуру entity
 func E2R(ec entity.Contact) (*Contact, error) {
 	c := Contact{}
 	err := copier.Copy(&c, &ec)
 	return &c, err
 }
 
-// Копирует данные из структуры entity в структуру базы
+// R2E Копирует данные из структуры entity в структуру базы
 func R2E(c Contact) (*entity.Contact, error) {
 	ec := entity.Contact{}
 	err := copier.Copy(&ec, &c)
 	return &ec, err
 }
 
-// Копирует массив данных из структуры базы в структуру entity
+// ES2RS Копирует массив данных из структуры базы в структуру entity
 func ES2RS(ec []entity.Contact) ([]Contact, error) {
 	c := []Contact{}
 	err := copier.Copy(&c, &ec)
 	return c, err
 }
 
-// Копирует массив данных из структуры entity в структуру базы
+// RS2ES Копирует массив данных из структуры entity в структуру базы
 func RS2ES(c []Contact) ([]*entity.Contact, error) {
 	ec := []*entity.Contact{}
 	err := copier.Copy(&ec, &c)
